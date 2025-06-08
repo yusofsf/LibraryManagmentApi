@@ -6,7 +6,6 @@ use App\Constants\Constants;
 use App\Enums\BookStatus;
 use App\Enums\UserRole;
 use App\Models\Book;
-use App\Models\Penalty;
 use App\Models\Publication;
 use App\Models\Reservation;
 use App\Models\User;
