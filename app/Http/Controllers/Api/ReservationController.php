@@ -13,6 +13,7 @@ use App\Models\Reservation;
 use Carbon\Carbon;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Response;
 
 class ReservationController extends Controller
@@ -22,6 +23,7 @@ class ReservationController extends Controller
      */
     public function index(): JsonResponse
     {
+        Gate::allowIf(Auth::user()->isLibrarian() || Auth::user()->isAdministrator());
         return Response::json([
             'message' => 'All Reservations',
             'result' => Reservation::all()
@@ -34,6 +36,8 @@ class ReservationController extends Controller
      */
     public function show(Reservation $reservation): JsonResponse
     {
+        Gate::allowIf(Auth::user()->isLibrarian() || Auth::user()->isAdministrator());
+
         return Response::json([
             'message' => 'show reservation',
             'result' => $reservation

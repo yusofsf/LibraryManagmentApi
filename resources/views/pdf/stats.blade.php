@@ -96,7 +96,6 @@
                     <tr>
                         <th>Book Name</th>
                         <th>Book Author</th>
-                        <th>Withdrawal Date</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -104,7 +103,6 @@
                         <tr>
                             <td>{{ $book->title }}</td>
                             <td>{{ $book->author }}</td>
-                            <td>{{ $book->withdrawal_date }}</td>
                         </tr>
                     @endforeach
                 </tbody>

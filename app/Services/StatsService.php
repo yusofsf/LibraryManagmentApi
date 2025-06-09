@@ -43,10 +43,8 @@ readonly class StatsService implements StatsServiceInterface
      */
     public function availableBooks(): Collection
     {
-        return Book::join('reservations', 'books.id', '=', 'reservations.book_id')
-            ->where('books.status', BookStatus::Available)
-            ->whereNotNull('reservations.withdrawal_date')
-            ->select('books.title', 'books.author', 'reservations.withdrawal_date')
+        return Book::where('status', BookStatus::Available)
+            ->select('title', 'author')
             ->get();
     }
 
