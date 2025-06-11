@@ -61,6 +61,17 @@ npm run dev
 php artisan serve
 ```
 ---
+
+#### مشخصات ادمین
+```bash
+password: 1234567
+email: hassan@example.com
+```
+#### مشخصات کتابدار
+```bash
+password: 123456
+email: mohammad@example.com
+```
 ---
 #### ساختار کلی پروژه
 
