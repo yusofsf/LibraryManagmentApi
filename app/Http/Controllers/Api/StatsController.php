@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Interfaces\StatsServiceInterface;
+use App\Models\User;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Response;
 
 class StatsController extends Controller
@@ -28,6 +30,8 @@ class StatsController extends Controller
      */
     public function lentBooks(): JsonResponse
     {
+        Gate::allowIf(fn (User $user) => !$user->isMember());
+
         $lentBooks = $this->statsService->lentBooks();
 
         return Response::json([
@@ -41,6 +45,8 @@ class StatsController extends Controller
      */
     public function availableBooks(): JsonResponse
     {
+        Gate::allowIf(fn (User $user) => !$user->isMember());
+
         $availableBooks = $this->statsService->availableBooks();
 
         return Response::json([
@@ -54,6 +60,8 @@ class StatsController extends Controller
      */
     public function penalties(): JsonResponse
     {
+        Gate::allowIf(fn (User $user) => !$user->isMember());
+
         $penalties = $this->statsService->penalties();
 
         return Response::json([
@@ -67,6 +75,8 @@ class StatsController extends Controller
      */
     public function mostLentBooks(): JsonResponse
     {
+        Gate::allowIf(fn (User $user) => !$user->isMember());
+
         $mostLentBooks = $this->statsService->mostLentBooks();
 
         return Response::json([
@@ -80,6 +90,8 @@ class StatsController extends Controller
      */
     public function mostActiveUsers(): JsonResponse
     {
+        Gate::allowIf(fn (User $user) => !$user->isMember());
+
         $mostActiveUsers = $this->statsService->mostActiveUsers();
 
         return Response::json([
@@ -93,6 +105,8 @@ class StatsController extends Controller
      */
     public function statsToPDF(): mixed
     {
+        Gate::allowIf(fn (User $user) => !$user->isMember());
+
         return $this->statsService->statsToPDF();
     }
 }

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\User\UserUpdateRequest;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Response;
 
 class UserController extends Controller
@@ -15,6 +16,8 @@ class UserController extends Controller
      */
     public function index(): JsonResponse
     {
+        Gate::allowIf(fn (User $user) => $user->isAdministrator());
+
         return Response::json([
             'message' => 'All Users',
             'result' => User::all()
@@ -28,6 +31,8 @@ class UserController extends Controller
      */
     public function show(User $user): JsonResponse
     {
+        Gate::allowIf(fn (User $user) => $user->isAdministrator() || $user->isLibrarian());
+
         return Response::json([
             'message' => 'show user',
             'result' => $user
@@ -40,6 +45,8 @@ class UserController extends Controller
      */
     public function delete(User $user): JsonResponse
     {
+        Gate::allowIf(fn (User $user) => $user->isLibrarian());
+
         $user->delete();
 
         return Response::json([
@@ -54,8 +61,9 @@ class UserController extends Controller
      */
     public function update(User $user, UserUpdateRequest $request): JsonResponse
     {
-        $user->update($request->validated());
+        Gate::allowIf(fn (User $user) => $user->isLibrarian());
 
+        $user->update($request->validated());
 
         return Response::json([
             'message' => 'user updated',
