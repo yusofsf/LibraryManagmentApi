@@ -143,14 +143,14 @@
                 <thead>
                     <tr>
                         <th>Book Name</th>
-                        <th>Times Lent</th>
+                        <th>Book Author</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach($mostLentBooks as $book)
                     <tr>
                         <td>{{ $book->title }}</td>
-                        <td>{{ $book->start_date ?? 0 }}</td>
+                        <td>{{ $book->author }}</td>
                     </tr>
                     @endforeach
                 </tbody>

@@ -21,7 +21,7 @@ class Reservation extends Model
         'start_date',
         'end_date',
         'withdrawal_date',
-        'is_completed'
+        'book_id'
     ];
 
     /**
