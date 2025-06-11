@@ -26,7 +26,6 @@ class UpdateBookRequest extends FormRequest
             'title' => 'required|string',
             'author' => 'required|string',
             'description' => 'required|string',
-            'ISBN' => 'required|string'
         ];
     }
 }

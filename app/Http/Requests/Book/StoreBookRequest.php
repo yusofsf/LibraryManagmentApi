@@ -28,7 +28,6 @@ class StoreBookRequest extends FormRequest
             'description' => 'string|required',
             'page_count' => 'numeric|required',
             'release' => 'string|required',
-            'ISBN' => 'string|required|unique:books,ISBN'
         ];
     }
 }
