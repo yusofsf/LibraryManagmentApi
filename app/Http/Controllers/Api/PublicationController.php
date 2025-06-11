@@ -86,7 +86,7 @@ class PublicationController extends Controller
      */
     public function storeBook(Publication $publication, StoreBookRequest $request): JsonResponse
     {
-        $book = $publication->books()->craete($request->validated());
+        $book = $publication->books()->create($request->validated());
 
         return Response::json([
             'message' => 'book stored',
