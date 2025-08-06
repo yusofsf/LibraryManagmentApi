@@ -21,6 +21,15 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        $administrator = User::factory()->create([
+            'user_name' => 'hassanh',
+            'email' => 'hassan@example.com',
+            'email_verified_at' => now(),
+            'password' => Hash::make('1234567'),
+            'remember_token' => Str::random(10),
+            'role' => UserRole::ADMINISTRATOR
+        ]);
+
         User::factory()->create(
             [
                 'user_name' => 'mohammadm',
@@ -28,18 +37,9 @@ class DatabaseSeeder extends Seeder
                 'email_verified_at' => now(),
                 'password' => Hash::make('123456'),
                 'remember_token' => Str::random(10),
-                'role' => UserRole::Librarian
+                'role' => UserRole::LIBRARIAN
             ]
         );
-
-        $administrator = User::factory()->create([
-            'user_name' => 'hassanh',
-            'email' => 'hassan@example.com',
-            'email_verified_at' => now(),
-            'password' => Hash::make('1234567'),
-            'remember_token' => Str::random(10),
-            'role' => UserRole::Administrator
-        ]);
 
         Publication::factory(15)->has(Book::factory()->count(3))->create([
             'user_id' => $administrator->id,
@@ -58,7 +58,7 @@ class DatabaseSeeder extends Seeder
                         'book_id' => $book->id
                     ]);
 
-                    $book->update(['status' => BookStatus::Lent]);
+                    $book->update(['status' => BookStatus::LENT]);
                 } else {
                     $reservation = Reservation::factory()->create([
                         'user_id' => $user->id,
@@ -76,7 +76,7 @@ class DatabaseSeeder extends Seeder
                         ]);
                     }
 
-                    $book->update(['status' => BookStatus::Available]);
+                    $book->update(['status' => BookStatus::AVAILABLE]);
                 }
             }
         }

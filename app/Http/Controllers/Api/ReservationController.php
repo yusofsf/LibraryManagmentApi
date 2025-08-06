@@ -53,14 +53,14 @@ class ReservationController extends Controller
     {
         $validated = $request->validated();
 
-        if ($book->status === BookStatus::Lent) {
+        if ($book->status === BookStatus::LENT) {
             return Response::json([
                 'message' => 'book not available',
             ]);
         }
 
         $book->update([
-            'status' => BookStatus::Lent
+            'status' => BookStatus::LENT
         ]);
 
         $reservation = Auth::user()->reservations()->create([
@@ -86,7 +86,7 @@ class ReservationController extends Controller
         $validated = $request->validated();
 
         $reservation->book->update([
-            'status' => BookStatus::Available
+            'status' => BookStatus::AVAILABLE
         ]);
 
         $reservation->update([
@@ -95,7 +95,7 @@ class ReservationController extends Controller
         ]);
 
         $book->update([
-            'status' => BookStatus::Lent
+            'status' => BookStatus::LENT
         ]);
 
         return Response::json([
@@ -127,7 +127,7 @@ class ReservationController extends Controller
         ]);
 
         $book->update([
-            'status' => BookStatus::Available
+            'status' => BookStatus::AVAILABLE
         ]);
 
         $endDate = Carbon::parse($reservation->end_date);

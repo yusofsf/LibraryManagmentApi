@@ -2,8 +2,8 @@
 
 namespace App\Enums;
 
-enum BookStatus
+enum BookStatus: string
 {
-    const Available = 'موجود';
-    const Lent = 'امانت داده شده';
+    case AVAILABLE = 'موجود';
+    case LENT = 'امانت داده شده';
 }

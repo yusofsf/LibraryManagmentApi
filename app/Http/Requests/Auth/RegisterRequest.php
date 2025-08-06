@@ -27,7 +27,6 @@ class RegisterRequest extends FormRequest
             'phone_number' => 'string|required|max:20',
             'email' => 'string|required|unique:users,email|email:rfc',
             'password' => 'string|required|min:6|confirmed',
-            'password_confirmation' => 'string|required|min:6'
         ];
     }
 }

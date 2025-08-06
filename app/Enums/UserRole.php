@@ -1,9 +1,9 @@
 <?php
 
 namespace App\Enums;
-enum UserRole
+enum UserRole: string
 {
-    const Member = 'عضو';
-    const Librarian = 'کتابدار';
-    const Administrator = 'مدیریت';
+    case MEMBER = 'عضو';
+    case LIBRARIAN = 'کتابدار';
+    case ADMINISTRATOR = 'مدیریت';
 }
